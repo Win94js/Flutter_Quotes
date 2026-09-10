@@ -37,7 +37,18 @@ class _QuoteListState extends State<QuoteList> {
       body: Column(
         // children: quotes.map((q) =>  Text("${q.text} - ${q.author}")).toList(),
         // children: quotes.map((quote) => quoteTemplate(quote)).toList(),
-        children: quotes.map((quote) => QuoteCard(quote: quote)).toList(),
+        children: quotes
+            .map(
+              (quote) => QuoteCard(
+                quote: quote,
+                delete: () {
+                  setState(() {
+                    quotes.remove(quote);
+                  });
+                },
+              ),
+            )
+            .toList(),
       ),
     );
   }
